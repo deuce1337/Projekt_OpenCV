@@ -7,22 +7,32 @@ import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class ImgProcess
 {
     void loadImg(String fName)
     {
-        File fPath = Environment.getExternalStorageDirectory();
-        File file = new File(fPath, fName);
-        Mat mat = Imgcodecs.imread(file.getAbsolutePath());
+        File file = new File(Environment.getExternalStorageDirectory(), fName);
+        Mat image = Imgcodecs.imread(file.getAbsolutePath());
+
         if(file.exists())
         {
-            Log.i("height", mat.height() + "");
-            Log.i("width", mat.width() + "");
+            Log.i("Image height", image.height() + "");
+            Log.i("Image width", image.width() + "");
+
+            if(image.channels() == 3) //BGR
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    double pixel[] = image.get(i, i);
+                    Log.d("Pixel value", Arrays.toString(pixel));
+                }
+            }
         }
         else
         {
-            Log.d("Error", "File not found!");
+            Log.d("Debug", "File not found!");
         }
     }
 }

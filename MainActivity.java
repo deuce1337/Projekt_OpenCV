@@ -36,13 +36,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Button bClick = (Button) findViewById(R.id.bClick);
-
         final ImgProcess imgProcess = new ImgProcess();
 
         if (!OpenCVLoader.initDebug())
         {
             Log.d("Debug", "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, this, mLoaderCallback);
         }
 
         bClick.setOnClickListener(new View.OnClickListener()
