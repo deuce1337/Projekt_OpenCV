@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
                 } break;
                 default:
                 {
-                    Log.d("Debug", "Failed to load OpenCV");
+                    Log.e("Error", "Failed to load OpenCV");
                     super.onManagerConnected(status);
                 } break;
             }
@@ -35,22 +35,36 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button bClick = (Button) findViewById(R.id.bClick);
+        Button bDecode = (Button) findViewById(R.id.bDecode);
+        Button bEncode = (Button) findViewById(R.id.bEncode);
+
         final ImgProcess imgProcess = new ImgProcess();
 
         if (!OpenCVLoader.initDebug())
         {
-            Log.d("Debug", "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            Log.w("Warning", "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, this, mLoaderCallback);
         }
 
-        bClick.setOnClickListener(new View.OnClickListener()
+        bDecode.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 imgProcess.loadImg("img.png");
-                imgProcess.encodeMsg("a");
+                imgProcess.decodeMsg();
+            }
+        });
+
+        bEncode.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                imgProcess.loadImg("img.png");
+                imgProcess.setMessage("abcjnaskjvbksjabkasjbvkjasbdvkbaskjdvbasjkvb");
+                imgProcess.encodeMsg();
+                imgProcess.saveImage();
             }
         });
     }
