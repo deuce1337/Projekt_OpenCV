@@ -121,7 +121,7 @@ public class ImgProcess
 //            Log.d("Pixel3 table", Arrays.toString(pixel3) + " run " + i);
         }
     }
-    
+
     void saveImage() //Zapis do pliku
     {
         File file = new File(Environment.getExternalStorageDirectory(), "img_mod.png");
