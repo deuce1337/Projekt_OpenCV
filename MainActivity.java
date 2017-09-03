@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 imgProcess.loadImg("img.png");
-                imgProcess.setMessage("abc");
+                imgProcess.setMessage("abcd");
                 imgProcess.encodeMsg();
                 imgProcess.saveImage();
             }
